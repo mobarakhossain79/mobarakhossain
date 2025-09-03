@@ -1,200 +1,246 @@
-import { useState } from 'react'
-import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Instagram } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Card } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Label } from '@/components/ui/label'
-import { useToast } from '@/hooks/use-toast'
+import React, { useState, useEffect } from 'react';
+import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Instagram } from 'lucide-react';
 
-const Contact = () => {
+
+const Card = ({ className, children }) => (
+  <div className={`rounded-2xl ${className}`}>{children}</div>
+);
+
+const Input = ({ className, ...props }) => (
+  <input
+    className={`w-full p-3 rounded-lg bg-slate-50 border border-slate-300 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 ${className}`}
+    {...props}
+  />
+);
+
+const Textarea = ({ className, ...props }) => (
+  <textarea
+    className={`w-full p-3 rounded-lg bg-slate-50 border border-slate-300 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 resize-none ${className}`}
+    {...props}
+  ></textarea>
+);
+
+const Label = ({ className, ...props }) => (
+  <label className={`text-sm font-medium text-slate-700 ${className}`} {...props} />
+);
+
+const Button = ({ className, children, ...props }) => (
+  <button
+    className={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background ${className}`}
+    {...props}
+  >
+    {children}
+  </button>
+);
+
+// A custom toast notification system to replace useToast
+const Toast = ({ title, description, show, onHide }) => {
+  useEffect(() => {
+    if (show) {
+      const timer = setTimeout(() => {
+        onHide();
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [show, onHide]);
+
+  return (
+    <div
+      className={`fixed top-5 right-5 w-auto max-w-sm p-4 rounded-lg shadow-lg bg-white text-slate-900 border border-primary transition-all duration-300 ease-in-out ${
+        show ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'
+      }`}
+    >
+      <p className="font-bold text-primary">{title}</p>
+      <p className="text-sm text-slate-600">{description}</p>
+    </div>
+  );
+};
+
+const useToast = () => {
+    const [toastState, setToastState] = useState({ show: false, title: '', description: '' });
+
+    const toast = ({ title, description }) => {
+        setToastState({ show: true, title, description });
+    };
+
+    const hideToast = () => {
+        setToastState(prev => ({ ...prev, show: false }));
+    };
+
+    return { toast, toastState, hideToast };
+};
+
+
+// --- Main Contact Component ---
+const App = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
     message: ''
-  })
-  const { toast } = useToast()
+  });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Here you would typically send the form data to your backend
+  const { toast, toastState, hideToast } = useToast();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // In a real application, you would send the form data to a backend here.
     toast({
       title: "Message Sent!",
       description: "Thank you for reaching out. I'll get back to you soon.",
-    })
-    setFormData({ name: '', email: '', subject: '', message: '' })
-  }
+    });
+    setFormData({ name: '', email: '', subject: '', message: '' });
+  };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
-    }))
-  }
+    }));
+  };
 
   const contactInfo = [
     {
       icon: Mail,
-      label: "Email",
-      value: "hello@johndesigner.com",
-      href: "mailto:hello@johndesigner.com"
+      value: "mobarakhossainjoy045@gmail.com",
+     
     },
     {
       icon: Phone,
-      label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
+      value: "+880 1870367939",
+      href: "tel:+880 1870367939"
     },
     {
       icon: MapPin,
-      label: "Location",
-      value: "Creative City, CC 12345",
+      value: "Moinartek, Uttar Khan, Dhaka-1230, Bangladesh",
       href: "#"
     }
-  ]
+  ];
 
   const socialLinks = [
     { icon: Linkedin, href: "#", label: "LinkedIn" },
     { icon: Twitter, href: "#", label: "Twitter" },
     { icon: Instagram, href: "#", label: "Instagram" },
-  ]
+  ];
+
+  // Define your colors here to be used in Tailwind classes
+  const colors = {
+    primary: '#45C7F0',
+    secondary: '#253E87',
+  };
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Let's <span className="gradient-primary bg-clip-text text-transparent">Connect</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Ready to bring your vision to life? Let's discuss your project and create something amazing together.
-          </p>
-        </div>
+    // We inject a style tag to define CSS variables for our brand colors.
+    // This makes them easily reusable in Tailwind's arbitrary value syntax.
+    <>
+      <style>{`
+        :root {
+          --primary: ${colors.primary};
+          --secondary: ${colors.secondary};
+        }
+      `}</style>
+      
+      <Toast title={toastState.title} description={toastState.description} show={toastState.show} onHide={hideToast} />
 
-        <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Information */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-6">Get in Touch</h3>
-              <p className="text-muted-foreground text-lg leading-relaxed mb-8">
-                I'm always excited to work on new projects and collaborate with amazing people. 
-                Whether you have a project in mind or just want to chat about design, feel free to reach out!
-              </p>
-            </div>
+      <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-50 text-black min-h-screen flex items-center justify-center font-sans">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 tracking-tight text-slate-900">
+              Let's <span className="text-primary">Connect</span>
+            </h2>
+            <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+              Ready to bring your vision to life? Let's discuss your project and create something amazing together.
+            </p>
+          </div>
 
-            {/* Contact Details */}
-            <div className="space-y-4">
-              {contactInfo.map((item, index) => (
-                <Card key={index} className="glass-card p-4 hover-lift">
-                  <a 
+          <div className="grid lg:grid-cols-5 gap-12">
+            
+            {/* Left Column: Contact Information */}
+            <div className="lg:col-span-2 space-y-10 flex flex-col justify-center">
+              <div>
+                <h3 className="text-3xl font-bold mb-2" style={{color: colors.secondary}}>Get in Touch</h3>
+                <p className="text-slate-600 leading-relaxed">
+                  I'm always excited to work on new projects. Whether you have a question or just want to say hi, my inbox is always open!
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                {contactInfo.map((item, index) => (
+                  <a
+                    key={index}
                     href={item.href}
                     className="flex items-center space-x-4 group"
                   >
-                    <div className="p-3 bg-primary/10 rounded-lg group-hover:bg-primary/20 transition-colors duration-200">
-                      <item.icon className="h-5 w-5 text-primary" />
+                    <div className="p-3 bg-white rounded-full shadow-md group-hover:bg-primary group-hover:scale-110 transition-all duration-300">
+                      <item.icon className="h-6 w-6 text-primary" />
                     </div>
-                    <div>
-                      <div className="text-sm text-muted-foreground">{item.label}</div>
-                      <div className="font-medium group-hover:text-primary transition-colors duration-200">
-                        {item.value}
-                      </div>
+                    <div className="font-medium text-lg text-slate-700 group-hover:text-primary transition-colors duration-300">
+                      {item.value}
                     </div>
                   </a>
-                </Card>
-              ))}
-            </div>
-
-            {/* Social Links */}
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Follow Me</h4>
-              <div className="flex space-x-4">
+                ))}
+              </div>
+              
+              <div className="flex space-x-4 pt-4">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
                     href={social.href}
-                    className="p-3 glass rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200 group"
+                    className="p-3 bg-white rounded-full text-secondary"
                     aria-label={social.label}
                   >
-                    <social.icon className="h-5 w-5 group-hover:scale-110 transition-transform duration-200" />
+                    <social.icon className="h-6 w-6" />
                   </a>
                 ))}
               </div>
             </div>
+
+            {/* Right Column: Contact Form */}
+            <div className="lg:col-span-3">
+               <Card className="bg-white border border-slate-200 p-8 shadow-xl">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid sm:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                      <Label htmlFor="name">Full Name</Label>
+                      <Input id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="John Doe" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email Address</Label>
+                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="you@example.com" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="subject">Subject</Label>
+                    <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Let's build something!" />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="message">Message</Label>
+                    <Textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} placeholder="Tell me about your amazing project..." />
+                  </div>
+
+                  <Button
+                       type="submit"
+                       size="lg"
+                      className="w-full text-lg py-3 px-6 text-black font-bold bg-primary 
+                       hover:bg-cyan-300 shadow-lg shadow-primary/30 hover:shadow-cyan-300/40 transition-all duration-300 group transform hover:-translate-y-1
+                      border-2 border-black/10 rounded-lg">
+                        Send Message
+                         <Send className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
+                         </Button>
+
+                </form>
+              </Card>
+            </div>
           </div>
-
-          {/* Contact Form */}
-          <Card className="glass-card p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <Label htmlFor="name">Name</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    className="glass border-primary/20 focus:border-primary"
-                    placeholder="Your Name"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    className="glass border-primary/20 focus:border-primary"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="subject">Subject</Label>
-                <Input
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="glass border-primary/20 focus:border-primary"
-                  placeholder="Project Discussion"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="message">Message</Label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={6}
-                  className="glass border-primary/20 focus:border-primary resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <Button 
-                type="submit" 
-                size="lg" 
-                className="w-full gradient-primary shadow-primary hover:shadow-lg transition-all duration-300 group"
-              >
-                <Send className="mr-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-                Send Message
-              </Button>
-            </form>
-          </Card>
         </div>
-      </div>
-    </section>
-  )
-}
+      </section>
+    </>
+  );
+};
 
-export default Contact
+export default App;
+
+
