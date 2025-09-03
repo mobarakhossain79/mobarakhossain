@@ -40,14 +40,19 @@ const Navbar = () => {
     >
       <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo / Brand */}
+
+       
           <div
-            className={`text-2xl font-bold transition-colors duration-300 ${
-              isScrolled ? 'text-black' : 'text-white'
-            }`}
+            className="flex items-center cursor-pointer"
+            onClick={() => scrollToSection('hero')}
           >
-            Portfolio
+            <img
+              src="/logo.png" 
+              alt="Logo"
+              className="h-14 w-auto"
+            />
           </div>
+
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
@@ -57,8 +62,8 @@ const Navbar = () => {
                 onClick={() => scrollToSection(item.id)}
                 className={`transition-colors duration-300 font-medium ${
                   isScrolled
-                    ? 'text-black hover:text-gray-600'
-                    : 'text-white hover:text-gray-300'
+                    ? 'text-black hover:text-Blue-600'
+                    : 'text-white hover:text-Blue-300'
                 }`}
               >
                 {item.label}
@@ -70,7 +75,7 @@ const Navbar = () => {
               className={`transition-colors duration-300 ${
                 isScrolled
                   ? 'border-black text-black hover:bg-black hover:text-white'
-                  : 'border-white text-Black hover:bg-white hover:text-black'
+                  : 'border-white text-black hover:bg-white hover:text-black'
               }`}
             >
               Let's Talk

@@ -18,12 +18,12 @@ All colors MUST be HSL.
     --popover-foreground: 222.2 84% 4.9%;
 
     /* Purple theme based on #6632f5 */
-    --primary: #6632f5;
-    --primary-foreground: #d6c7ff;
-    --primary-light: #9D5CFF;
-    --primary-dark: #5A00D2;
+    --primary: #45C7F0;
+    --primary-foreground: #c9e9f3;
+    --primary-light: #8cd5eb;
+    --primary-dark: #0b6f8d;
 
-    --secondary: #5A00D2;
+    --secondary: #263D88;
     --secondary-foreground: #FFFFFF;
 
     --muted: #F3F4F6;
