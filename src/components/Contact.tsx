@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Mail, Phone, MapPin, Send, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { TextareaProps } from './ui/textarea';
 
 
 const Card = ({ className, children }) => (
@@ -13,11 +14,11 @@ const Input = ({ className, ...props }) => (
   />
 );
 
-const Textarea = ({ className, ...props }) => (
+const Textarea: React.FC<TextareaProps> = ({ className = "", ...props }) => (
   <textarea
     className={`w-full p-3 rounded-lg bg-slate-50 border border-slate-300 placeholder-slate-400 text-slate-900 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300 resize-none ${className}`}
     {...props}
-  ></textarea>
+  />
 );
 
 const Label = ({ className, ...props }) => (
@@ -202,22 +203,22 @@ const App = () => {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name</Label>
-                      <Input id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="John Doe" />
+                      <Label htmlFor="name" className={undefined}>Full Name</Label>
+                      <Input id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="John Doe" className={undefined} />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email Address</Label>
-                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="you@example.com" />
+                      <Label htmlFor="email" className={undefined}>Email Address</Label>
+                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="you@example.com" className={undefined} />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Let's build something!" />
+                    <Label htmlFor="subject" className={undefined}>Subject</Label>
+                    <Input id="subject" name="subject" value={formData.subject} onChange={handleChange} required placeholder="Let's build something!" className={undefined} />
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className={undefined}>Message</Label>
                     <Textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} placeholder="Tell me about your amazing project..." />
                   </div>
 
