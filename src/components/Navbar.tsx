@@ -46,11 +46,20 @@ const Navbar = () => {
             className="flex items-center cursor-pointer"
             onClick={() => scrollToSection('hero')}
           >
-            <img
-              src="/logo.png" 
-              alt="Logo"
-              className="h-14 w-auto"
-            />
+            <div className="flex items-center gap-4">
+  {/* Profile Image */}
+  <img
+    src="/Me.JPG"
+    alt="Profile"
+    className="h-14 w-14 rounded-full object-cover" 
+  />
+
+  {/* Name */}
+  <div className="text-white font-semibold text-lg">
+    Mobarak Hossain Joy
+  </div>
+</div>
+
           </div>
 
 
