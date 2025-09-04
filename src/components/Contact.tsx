@@ -204,11 +204,11 @@ const App = () => {
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <Label htmlFor="name" className={undefined}>Full Name</Label>
-                      <Input id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="John Doe" className={undefined} />
+                      <Input id="name" name="name" value={formData.name} onChange={handleChange} required placeholder="" className={undefined} />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email" className={undefined}>Email Address</Label>
-                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="you@example.com" className={undefined} />
+                      <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} required placeholder="" className={undefined} />
                     </div>
                   </div>
 

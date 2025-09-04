@@ -129,7 +129,7 @@ const Footer = () => {
               <div className="flex flex-col sm:flex-row gap-2">
                 <input
                   type="email"
-                  placeholder="your.email@example.com"
+                  placeholder=""
                   className="w-full bg-white border border-gray-700 rounded-md py-2 px-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 transition-all duration-300"
                 />
                 <button type="submit" className="bg-[#45C7F0] text-black text-sm font-semibold rounded-md px-4 py-2 hover:bg-[#8cd5eb] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900 transition-all duration-300 whitespace-nowrap">
