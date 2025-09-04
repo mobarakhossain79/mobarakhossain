@@ -76,10 +76,13 @@ const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-          <Button variant="outline">
-            <Download className="mr-2 h-5 w-5" /> Get My Resume
-          </Button>
-        </div>
+  <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
+    <Button variant="outline">
+      <Download className="mr-2 h-5 w-5" /> Get My Resume
+    </Button>
+  </a>
+</div>
+
       </div>
     </section>
   );
