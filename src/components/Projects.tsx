@@ -1,161 +1,129 @@
 import React from 'react';
 
-const Card = ({ children, className, ...props }) => (
-  <div className={`bg-white/80 backdrop-blur-sm border border-slate-200/80 rounded-xl overflow-hidden shadow-lg ${className}`} {...props}>
-    {children}
-  </div>
-);
+// Main App component that renders the project portfolio
+const App = () => {
+    return (
+        <div className="bg-gray-100 min-h-screen font-sans">
+            <Projects />
+        </div>
+    );
+};
 
-// A simple Button component base
-const Button = ({ children, className, ...props }) => (
-  <button className={`inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background ${className}`} {...props}>
-    {children}
-  </button>
-);
-
+// Projects component containing the portfolio data and structure
 const Projects = () => {
-  const projects = [
-    {
-      id: 1,
-      title: "Brand Identity Design",
-      category: "Branding",
-      description: "Complete brand identity system for a tech startup including logo, typography, and brand guidelines.",
-      tags: ["Logo Design", "Brand Guidelines", "Typography"],
-      imageUrl: 'https://placehold.co/600x400/A78BFA/FFFFFF?text=Branding',
-    },
-    {
-      id: 2,
-      title: "Primary School Website UI",
-      category: "Web Design",
-      description: "Modern and clean Primary School Website platform design focused on user experience and conversion optimization.",
-      tags: ["UI Design", "UX Research", "Prototyping"],
-      imageUrl: 'https://placehold.co/600x400/60A5FA/FFFFFF?text=Web+Design',
-    },
-    {
-      id: 3,
-      title: "Mobile App Interface",
-      category: "Mobile Design",
-      description: "Intuitive mobile app design for a fitness tracking application with engaging user interactions.",
-      tags: ["Mobile UI", "User Experience", "Interaction Design"],
-      imageUrl: 'https://placehold.co/600x400/34D399/FFFFFF?text=Mobile+App',
-    },
-    {
-      id: 4,
-      title: "Print Campaign Design",
-      category: "Print Design",
-      description: "Creative print campaign for a fashion brand including posters, brochures, and packaging design.",
-      tags: ["Print Design", "Campaign", "Packaging"],
-      imageUrl: 'https://placehold.co/600x400/F87171/FFFFFF?text=Print+Campaign',
-    },
-    {
-      id: 5,
-      title: "Social Media Graphics",
-      category: "Digital Marketing",
-      description: "Engaging social media template system for consistent brand presence across all platforms.",
-      tags: ["Social Media", "Templates", "Brand Consistency"],
-      imageUrl: 'https://placehold.co/600x400/818CF8/FFFFFF?text=Social+Media',
-    },
-    {
-      id: 6,
-      title: "Corporate Presentation",
-      category: "Presentation Design",
-      description: "Professional presentation design for corporate clients with clean layouts and data visualization.",
-      tags: ["Presentation", "Data Viz", "Corporate"],
-      imageUrl: 'https://placehold.co/600x400/2DD4BF/FFFFFF?text=Presentation',
-    }
-  ];
+    // Array of project objects with added 'link' property for navigation
+    const projects = [
+        {
+            id: 1,
+            title: "Brand Identity Design",
+            category: "Branding",
+            description: "Complete brand identity system for a tech startup including logo, typography, and brand guidelines.",
+            tags: ["Logo Design", "Brand Guidelines", "Typography"],
+            imageUrl: '/1.jpeg',
+            link: 'https://www.behance.net/gallery/163359893/Brand-Identity', // Clickable link for the project
+        },
+        {
+            id: 2,
+            title: "Primary School Website UI",
+            category: "Web Design",
+            description: "Modern and clean Primary School Website platform design focused on user experience and conversion optimization.",
+            tags: ["UI Design", "UX Research", "Prototyping"],
+            imageUrl: '/2.jpeg',
+            link: 'https://www.behance.net/gallery/232702915/Smart-Modern-School-Website-UI-Design', // Placeholder link
+        },
+        {
+            id: 3,
+            title: "Mobile App Interface",
+            category: "Mobile Design",
+            description: "Intuitive mobile app design for a fitness tracking application with engaging user interactions.",
+            tags: ["Mobile UI", "User Experience", "Interaction Design"],
+            imageUrl: 'https://placehold.co/600x400/34D399/FFFFFF?text=Mobile+App',
+            link: '#', // Placeholder link
+        },
+        {
+            id: 4,
+            title: "Print Campaign Design",
+            category: "Print Design",
+            description: "Creative print campaign for a fashion brand including posters, brochures, and packaging design.",
+            tags: ["Print Design", "Campaign", "Packaging"],
+            imageUrl: 'https://placehold.co/600x400/F87171/FFFFFF?text=Print+Campaign',
+            link: '#', // Placeholder link
+        },
+        {
+            id: 5,
+            title: "Social Media Graphics",
+            category: "Digital Marketing",
+            description: "Engaging social media template system for consistent brand presence across all platforms.",
+            tags: ["Social Media", "Templates", "Brand Consistency"],
+            imageUrl: 'https://placehold.co/600x400/818CF8/FFFFFF?text=Social+Media',
+            link: '#', // Placeholder link
+        },
+        {
+            id: 6,
+            title: "Corporate Presentation",
+            category: "Presentation Design",
+            description: "Professional presentation design for corporate clients with clean layouts and data visualization.",
+            tags: ["Presentation", "Data Viz", "Corporate"],
+            imageUrl: 'https://placehold.co/600x400/2DD4BF/FFFFFF?text=Presentation',
+            link: '#', // Placeholder link
+        }
+    ];
 
-  return (
-    <section id="projects" className="py-20 sm:py-28 px-4 sm:px-6 lg:px-8 text-slate-900 font-sans">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-            Featured <span style={{'--primary': '#45C7F0', '--secondary': '#263D88'}} className="bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">Projects</span>
-          </h2>
-          <p className="text-xl text-slate-800 max-w-3xl mx-auto">
-            Here's a selection of my work that showcases my skills in creating elegant and effective digital experiences.
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-              <Card 
-                key={project.id} 
-                className="group transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-[#263D88]/20"
-                style={{ animation: `fadeInUp 0.5s ease-out ${index * 0.1}s forwards`, opacity: 0 }}
-              >
-                <div className="relative overflow-hidden rounded-t-xl">
-                  <img src={project.imageUrl} alt={project.title} className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-110"/>
-                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/30 transition-colors duration-300"></div>
+    return (
+        <section id="projects" className="py-12 md:py-20">
+            <div className="container mx-auto px-4">
+                <div className="text-center mb-12">
+                    <h2 className="text-4xl font-extrabold text-gray-800 mb-2">My Portfolio</h2>
+                    <p className="text-lg text-gray-600">A collection of my recent design projects.</p>
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-slate-900 group-hover:text-[#263D88] transition-colors duration-200">
-                    {project.title}
-                  </h3>
-                  
-                  <p className="text-slate-600 text-sm mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
-                  
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span 
-                        key={tagIndex}
-                        className="text-xs bg-slate-200/80 text-slate-700 px-3 py-1 rounded-full"
-                      >
-                        {tag}
-                      </span>
+                {/* Grid container for project cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {projects.map((project) => (
+                        // Each project is a clickable link that opens in a new tab
+                        <a
+                            key={project.id}
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group block bg-white rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 ease-in-out overflow-hidden"
+                        >
+                            <div className="relative">
+                                {/* Project Image */}
+                               <img
+                                 src={project.imageUrl}
+                                 alt={project.title}
+                                 className="w-full h-56 object-cover transition-transform duration-300 group-hover:scale-105"
+                                 onError={(e) => {
+                                  const target = e.target as HTMLImageElement;
+                                  target.onerror = null;
+                                  target.src = 'https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Error';}}
+                                  />
+
+                                <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                            </div>
+                            <div className="p-6">
+                                {/* Project Category */}
+                                <p className="text-sm font-semibold text-indigo-600 mb-1">{project.category}</p>
+                                {/* Project Title */}
+                                <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
+                                {/* Project Description */}
+                                <p className="text-gray-700 text-sm mb-4">{project.description}</p>
+                                {/* Project Tags */}
+                                <div className="flex flex-wrap gap-2">
+                                    {project.tags.map((tag, index) => (
+                                        <span key={index} className="bg-gray-200 text-gray-800 text-xs font-medium px-3 py-1 rounded-full">
+                                            {tag}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        </a>
                     ))}
-                  </div>
                 </div>
-              </Card>
-            )
-          )}
-        </div>
+            </div>
+        </section>
+    );
+};
 
-        <div className="text-center mt-20">
-          <Button 
-            size="lg"
-            className="bg-transparent border-2 border-[#263D88] text-[#263D88] px-8 py-3 rounded-full font-semibold hover:bg-[#263D88] hover:text-white transition-all duration-300 transform hover:scale-105"
-          >
-            View All Projects
-          </Button>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-
-// --- Main App Component ---
-// This is the root component that renders our Projects section.
-export default function App() {
-  return (
-    <>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
-        body {
-          font-family: 'Inter', sans-serif;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
-        }
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-      `}</style>
-      <div className="bg-slate-100">
-        <Projects />
-      </div>
-    </>
-  )
-}
-
-
+export default App;

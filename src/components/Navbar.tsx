@@ -55,10 +55,10 @@ const Navbar = () => {
   />
 
   {/* Name */}
-  <div className="text-white font-semibold text-lg">
-    Mobarak Hossain Joy
-  </div>
-</div>
+  <div className={`font-semibold text-lg transition-colors duration-300 ${isScrolled ? 'text-black' : 'text-white'}`}>
+                 Mobarak Hossain Joy
+                 </div>
+                 </div>
 
           </div>
 
