@@ -74,13 +74,7 @@ const Footer = () => {
       <div className="container mx-auto px-6 pt-16 pb-8">
         {/* Scroll to top button */}
         <div className="relative -mt-24 flex justify-center">
-            <button
-                onClick={scrollToTop}
-                className="bg-purple-600 hover:bg-purple-700 text-white rounded-full p-3 shadow-lg transform hover:-translate-y-1 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
-                aria-label="Scroll to top"
-            >
-                <ArrowUpIcon />
-            </button>
+           
         </div>
 
         {/* Main Footer Grid */}
@@ -88,7 +82,7 @@ const Footer = () => {
           {/* Brand & Social Section */}
           <div className="lg:col-span-1">
             <h2 className="text-2xl font-bold text-white mb-4">
-              <span className="text-white">PRISM</span> <b>CREATIVE</b>
+              <span className="text-white">MOBARAK</span> <b>HOSSAIN JOY</b>
             </h2>
             <p className="text-sm text-gray-400 leading-relaxed mb-6">
               Crafting digital experiences that are beautiful, intuitive, and effective.
