@@ -5,7 +5,7 @@ import { Card } from '@/components/ui/card'
 
 const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('All')
-  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
+  const [viewMode, setViewMode] = useState('grid')
 
   const categories = ['All', 'Branding', 'Web Design', 'Mobile Design', 'Print Design', 'Digital Marketing']
   const projects = [
@@ -71,8 +71,8 @@ const Projects = () => {
     }
   ]
 
-  const filteredProjects = activeFilter === 'All' 
-    ? projects 
+  const filteredProjects = activeFilter === 'All'
+    ? projects
     : projects.filter(project => project.category === activeFilter)
 
   return (
@@ -97,9 +97,9 @@ const Projects = () => {
                 size="sm"
                 onClick={() => setActiveFilter(category)}
                 className={`transition-all duration-300 ${
-                  activeFilter === category 
-                    ? 'gradient-primary shadow-primary' 
-                    : 'glass border-primary/20 hover:bg-primary/10'
+                  activeFilter === category
+                    ? 'gradient-primary shadow-primary'
+                    : 'glass border-primary/20 hover:bg-primary/10 hover:text-white'
                 }`}
               >
                 <Filter className="mr-2 h-4 w-4" />
@@ -129,19 +129,19 @@ const Projects = () => {
         </div>
 
         <div className={`grid gap-8 ${
-          viewMode === 'grid' 
-            ? 'md:grid-cols-2 lg:grid-cols-3' 
+          viewMode === 'grid'
+            ? 'md:grid-cols-2 lg:grid-cols-3'
             : 'grid-cols-1 max-w-4xl mx-auto'
         }`}>
           {filteredProjects.map((project, index) => (
-            <Card 
-              key={project.id} 
+            <Card
+              key={project.id}
               className={`glass-card hover-lift overflow-hidden group cursor-pointer transform transition-all duration-500 ${
                 viewMode === 'list' ? 'flex' : ''
               }`}
-              style={{ 
+              style={{
                 animationDelay: `${index * 0.1}s`,
-                transform: `translateY(${index % 2 === 0 ? '0' : '20px'})` 
+                transform: `translateY(${index % 2 === 0 ? '0' : '20px'})`
               }}
             >
               {/* Enhanced Project Image */}
@@ -205,7 +205,7 @@ const Projects = () => {
                 
                 <div className="flex flex-wrap gap-2">
                   {project.tags.map((tag, tagIndex) => (
-                    <span 
+                    <span
                       key={tagIndex}
                       className="text-xs glass text-muted-foreground px-3 py-1 rounded-lg hover:bg-primary/10 hover:text-primary transition-colors duration-200 cursor-pointer"
                     >
@@ -219,8 +219,8 @@ const Projects = () => {
         </div>
 
         <div className="text-center mt-12">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="lg"
             className="glass border-primary/20 hover:bg-primary hover:text-primary-foreground"
           >
