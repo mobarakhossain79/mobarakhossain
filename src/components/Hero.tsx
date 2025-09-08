@@ -1,3 +1,4 @@
+import { Sparkles, Stars } from 'lucide-react';
 import React from 'react';
 
 const Eye = (props) => (
@@ -78,23 +79,70 @@ const Hero = () => {
         className="absolute inset-0 w-full h-full bg-gradient-to-r from-[#263D88] via-[#000000] to-[#45C7F0] animate-gradient"
       ></div>
 
-      {/* Background Graphic Elements */}
-      <div className="absolute inset-0 overflow-hidden z-0">
-        <div className="absolute top-1/4 left-1/4 h-64 w-64 rounded-full bg-[#45C7F0] opacity-10 blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 h-80 w-80 rounded-full bg-[#263D88] opacity-10 blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-96 w-96 rounded-full bg-white opacity-[0.05] blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-10 left-10 h-40 w-40 rounded-full bg-[#45C7F0] opacity-15 blur-3xl animate-pulse"></div>
-        <div className="absolute top-20 right-20 h-52 w-52 rounded-full bg-[#263D88] opacity-15 blur-3xl animate-pulse"></div>
-        {/* Additional Graphic Elements */}
-        <div className="absolute top-1/2 right-10 h-32 w-32 rounded-full bg-white opacity-5 blur-3xl animate-pulse animate-slow-spin"></div>
-        <div className="absolute bottom-20 left-1/3 h-56 w-56 rounded-full bg-[#45C7F0] opacity-5 blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/3 h-20 w-20 rounded-full bg-[#263D88] opacity-20 blur-3xl animate-pulse"></div>
-        {/* Further Added Elements */}
-        <div className="absolute top-[5%] left-[5%] h-24 w-24 rounded-full bg-white opacity-[0.07] blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-[5%] right-[5%] h-48 w-48 rounded-full bg-[#45C7F0] opacity-[0.08] blur-3xl animate-pulse animate-slow-spin"></div>
-        <div className="absolute top-[80%] left-[85%] h-32 w-32 rounded-full bg-[#263D88] opacity-[0.1] blur-3xl animate-pulse"></div>
-        <div className="absolute top-[15%] right-[15%] h-40 w-40 rounded-full bg-white opacity-[0.03] blur-3xl animate-pulse"></div>
+      {/* Geometric Shapes */}
+      <div className="absolute top-12 left-12 w-32 h-32 animate-float opacity-40">
+        <div className="relative w-full h-full">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-primary/10 rounded-full glass" />
+          <div className="absolute top-2 left-2 w-8 h-8 bg-primary/40 rounded-full" />
+          <div className="absolute bottom-4 right-4 w-12 h-12 border-2 border-primary/30 rounded-lg rotate-45" />
+          <Sparkles className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 text-primary/60" />
+        </div>
       </div>
+
+      {/* Creative Design Pattern */}
+      <div className="absolute top-24 right-20 w-48 h-48 animate-float opacity-30" style={{ animationDelay: '1s' }}>
+        <div className="relative w-full h-full rotate-12">
+          <div className="absolute inset-0 glass rounded-3xl bg-gradient-to-tr from-primary/20 to-accent/15" />
+          <div className="absolute top-4 left-4 w-16 h-16 border-4 border-primary/40 rounded-2xl" />
+          <div className="absolute bottom-6 right-6 w-20 h-20">
+            <div className="w-full h-full bg-gradient-to-br from-primary/30 to-primary/10 rounded-full" />
+            <div className="absolute top-2 left-2 w-4 h-4 bg-primary/50 rounded-full" />
+          </div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-8 h-8 border-2 border-primary/30 rotate-45" />
+        </div>
+      </div>
+
+      {/* Abstract Art Element */}
+      <div className="absolute bottom-32 left-16 w-28 h-28 animate-float opacity-50" style={{ animationDelay: '3s' }}>
+        <div className="relative w-full h-full">
+          <div className="absolute inset-0 glass rounded-2xl bg-gradient-to-bl from-primary/25 to-accent/20 rotate-12" />
+          <div className="absolute top-0 right-0 w-12 h-12 bg-primary/30 rounded-full transform translate-x-2 -translate-y-2" />
+          <div className="absolute bottom-2 left-2 w-16 h-4 bg-gradient-to-r from-primary/40 to-transparent rounded-full" />
+          <Stars className="absolute bottom-4 right-4 w-6 h-6 text-primary/70" />
+        </div>
+      </div>
+
+      {/* Design Tool Icons */}
+      <div className="absolute top-1/3 right-12 w-20 h-20 animate-float opacity-40" style={{ animationDelay: '5s' }}>
+        <div className="relative w-full h-full glass rounded-xl bg-gradient-to-tr from-primary/25 to-primary/10">
+          <div className="absolute inset-2 border-2 border-primary/30 rounded-lg" />
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-primary/60 rounded-full" />
+        </div>
+      </div>
+
+      {/* Creative Grid Pattern */}
+      <div className="absolute bottom-20 right-24 w-24 h-24 animate-float opacity-35" style={{ animationDelay: '7s' }}>
+        <div className="grid grid-cols-3 gap-1 w-full h-full p-2 glass rounded-lg bg-gradient-to-br from-primary/20 to-accent/15">
+          <div className="bg-primary/30 rounded-sm" />
+          <div className="bg-primary/20 rounded-sm" />
+          <div className="bg-primary/40 rounded-sm" />
+          <div className="bg-primary/25 rounded-sm" />
+          <div className="bg-primary/35 rounded-sm" />
+          <div className="bg-primary/30 rounded-sm" />
+          <div className="bg-primary/20 rounded-sm" />
+          <div className="bg-primary/40 rounded-sm" />
+          <div className="bg-primary/25 rounded-sm" />
+        </div>
+      </div>
+
+      {/* Floating Design Elements */}
+      <div className="absolute top-2/3 left-8 w-16 h-16 animate-float opacity-45" style={{ animationDelay: '4s' }}>
+        <div className="relative w-full h-full glass rounded-full bg-gradient-to-r from-accent/25 to-primary/15">
+          <div className="absolute top-1 right-1 w-4 h-4 bg-primary/40 rounded-full" />
+          <div className="absolute bottom-2 left-2 w-6 h-1 bg-primary/50 rounded-full" />
+        </div>
+      </div>
+      
 
       {/* Main Content */}
       <div className="relative z-10 text-center space-y-6 px-4">

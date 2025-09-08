@@ -80,7 +80,7 @@ const Projects = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            Featured <span className="gradient-primary bg-clip-text text-transparent">Projects</span>
+            Featured <span className="bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text">Projects</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             A showcase of my creative work across various design disciplines
