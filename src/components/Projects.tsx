@@ -30,8 +30,8 @@ const Projects = () => {
     color: "from-purple-500 to-pink-500",
     featured: true,
     year: "2024",
-    image: "/1.jpeg", // <-- Added image path
-    link: "https://www.behance.net/gallery/163359893/Brand-Identity" // <-- Added project link
+    image: "/1.jpeg",
+    link: "https://www.behance.net/gallery/163359893/Brand-Identity"
   },
   {
     id: 2,
@@ -42,8 +42,8 @@ const Projects = () => {
     color: "from-blue-500 to-cyan-500",
     featured: true,
     year: "2024",
-    image: "/2.jpeg", // <-- Added image path
-    link: "#https://www.behance.net/gallery/232702915/Smart-Modern-School-Website-UI-Design" // <-- Added project link
+    image: "/2.jpeg",
+    link: "https://www.behance.net/gallery/232702915/Smart-Modern-School-Website-UI-Design"
   },
   {
     id: 3,
@@ -54,8 +54,8 @@ const Projects = () => {
     color: "from-green-500 to-emerald-500",
     featured: false,
     year: "2023",
-    image: "/images/mobile-app.jpg", // <-- Added image path
-    link: "#" // <-- Added project link
+    image: "https://placehold.co/600x400/10b981/ffffff?text=Mobile+App",
+    link: "#"
   },
   {
     id: 4,
@@ -66,8 +66,8 @@ const Projects = () => {
     color: "from-orange-500 to-red-500",
     featured: true,
     year: "2023",
-    image: "/images/print-campaign.jpg", // <-- Added image path
-    link: "#" // <-- Added project link
+    image: "https://placehold.co/600x400/f97316/ffffff?text=Print+Design",
+    link: "#"
   },
   {
     id: 5,
@@ -78,8 +78,8 @@ const Projects = () => {
     color: "from-indigo-500 to-purple-500",
     featured: false,
     year: "2024",
-    image: "/images/social-media.jpg", // <-- Added image path
-    link: "#" // <-- Added project link
+    image: "https://placehold.co/600x400/6366f1/ffffff?text=Social+Media",
+    link: "#"
   },
   {
     id: 6,
@@ -90,8 +90,8 @@ const Projects = () => {
     color: "from-teal-500 to-blue-500",
     featured: false,
     year: "2023",
-    image: "/images/corporate-presentation.jpg", // <-- Added image path
-    link: "#" // <-- Added project link
+    image: "https://placehold.co/600x400/14b8a6/ffffff?text=Presentation",
+    link: "#"
   }
 ];
 
@@ -158,69 +158,78 @@ const Projects = () => {
             : 'grid-cols-1 max-w-4xl mx-auto'
         }`}>
           {filteredProjects.map((project, index) => (
-            <Card
-              key={project.id}
-              className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group cursor-pointer transform transition-all duration-500 hover:-translate-y-2 ${
-                viewMode === 'list' ? 'flex flex-row' : 'flex flex-col'
-              }`}
-            >
-              <div className={`${viewMode === 'list' ? 'w-1/3' : 'h-64'} bg-gradient-to-r ${project.color} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-500" />
-                
-                {project.featured && (
-                  <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-md">
-                    Featured
-                  </div>
-                )}
-                
-                <div className="absolute bottom-4 left-4 bg-black/30 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-lg font-medium">
-                  {project.year}
-                </div>
-                
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-white text-lg font-semibold opacity-80 group-hover:scale-110 transition-transform duration-300">
-                    {project.category}
-                  </div>
-                </div>
-                
-                <div className="absolute -top-10 -right-10 w-20 h-20 bg-white/10 rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="absolute -bottom-5 -left-5 w-15 h-15 bg-white/5 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition-opacity duration-500" />
-              </div>
+            <a key={project.id} href={project.link} target="_blank" rel="noopener noreferrer" className="block">
+              <Card
+                className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 h-full ${
+                  viewMode === 'list' ? 'flex flex-row' : 'flex flex-col'
+                }`}
+              >
+                <div className={`${viewMode === 'list' ? 'w-1/3' : 'h-64'} bg-gradient-to-r ${project.color} relative overflow-hidden`}>
+                  <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  onError={(e) => { const target = e.currentTarget as HTMLImageElement;
+                     target.onerror = null;target.src = "https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found";}}
+                     />
 
-              <div className={`${viewMode === 'list' ? 'w-2/3' : ''} p-6 flex flex-col justify-between flex-grow`}>
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
-                      {project.category}
-                    </span>
-                    {project.featured && (
-                      <span className="text-xs font-medium bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full flex items-center">
-                        <span className="mr-1">⭐</span> Featured
-                      </span>
-                    )}
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
+                  
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-md">
+                      Featured
+                    </div>
+                  )}
+                  
+                  <div className="absolute bottom-4 left-4 bg-black/30 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-lg font-medium">
+                    {project.year}
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-                    {project.title}
-                  </h3>
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="text-white text-lg font-semibold text-center p-4">
+                      {project.category}
+                    </div>
+                  </div>
                   
-                  <p className="text-gray-500 text-sm mb-4 leading-relaxed">
-                    {project.description}
-                  </p>
+                  <div className="absolute -top-10 -right-10 w-20 h-20 bg-white/10 rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute -bottom-5 -left-5 w-15 h-15 bg-white/5 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
-                
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+
+                <div className={`${viewMode === 'list' ? 'w-2/3' : ''} p-6 flex flex-col justify-between flex-grow`}>
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                        {project.category}
+                      </span>
+                      {project.featured && (
+                        <span className="text-xs font-medium bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full flex items-center">
+                          <span className="mr-1">⭐</span> Featured
+                        </span>
+                      )}
+                    </div>
+                    
+                    <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-500 text-sm mb-4 leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </Card>
+              </Card>
+            </a>
           ))}
         </div>
 
@@ -238,4 +247,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default Projects;
