@@ -92,7 +92,11 @@ const Projects = () => {
 
   const filteredProjects = activeFilter === 'All'
     ? projects
-    : projects.filter(project => project.category === activeFilter)
+    : projects.filter(project =>
+        project.tags.some(tag => tag.toLowerCase() === activeFilter.toLowerCase()) ||
+        (project.title && project.title.toLowerCase().includes(activeFilter.toLowerCase()))
+      );
+    
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 text-gray-900">
@@ -182,7 +186,7 @@ const Projects = () => {
                   
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="text-white text-lg font-semibold text-center p-4">
-                      {project.category}
+                      
                     </div>
                   </div>
                   
@@ -194,7 +198,7 @@ const Projects = () => {
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
-                        {project.category}
+                        
                       </span>
                       {project.featured && (
                         <span className="text-xs font-medium bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full flex items-center">
