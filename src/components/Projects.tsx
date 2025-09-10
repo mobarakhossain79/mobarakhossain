@@ -24,7 +24,7 @@ const Projects = () => {
   {
     id: 1,
     title: "Brand Identity Design",
-    category: "Branding",
+  
     description: "Complete brand identity system for a tech startup including logo, typography, and brand guidelines.",
     tags: ["Logo Design", "Brand Guidelines", "Typography"],
     color: "from-purple-500 to-pink-500",
@@ -36,62 +36,57 @@ const Projects = () => {
   {
     id: 2,
     title: "Primary School Website UI",
-    category: "Web Design",
     description: "Modern and clean e-commerce platform design focused on user experience and conversion optimization.",
     tags: ["UI Design", "UX Research", "Prototyping"],
     color: "from-blue-500 to-cyan-500",
     featured: true,
-    year: "2024",
+    year: "2025",
     image: "/2.jpeg",
     link: "https://www.behance.net/gallery/232702915/Smart-Modern-School-Website-UI-Design"
   },
   {
     id: 3,
-    title: "Mobile App Interface",
-    category: "Mobile Design",
-    description: "Intuitive mobile app design for a fitness tracking application with engaging user interactions.",
-    tags: ["Mobile UI", "User Experience", "Interaction Design"],
+    title: "Trip24 Admin Panel Dashboard UI",
+    description: "Trip24 Admin Panel Dashboard UI/UX Design for a Track booking platform with data visualization and user management features.",
+    tags: ["Desktop UI", "User Experience", "Interaction Design"],
     color: "from-green-500 to-emerald-500",
     featured: false,
-    year: "2023",
-    image: "https://placehold.co/600x400/10b981/ffffff?text=Mobile+App",
-    link: "#"
+    year: "2025",
+    image: "/3.jpeg",
+    link: "https://www.behance.net/gallery/231695663/E-Learning-Landing-Page-Design"
   },
   {
     id: 4,
-    title: "Print Campaign Design",
-    category: "Print Design",
-    description: "Creative print campaign for a fashion brand including posters, brochures, and packaging design.",
+    title: "Dhaka Marathon Event Design",
+    description: "Creative print campaign for a Dhaka Marathon Event including posters, brochures, and packaging design.",
     tags: ["Print Design", "Campaign", "Packaging"],
     color: "from-orange-500 to-red-500",
     featured: true,
-    year: "2023",
-    image: "https://placehold.co/600x400/f97316/ffffff?text=Print+Design",
-    link: "#"
+    year: "2024",
+    image: "/4.jpg",
+    link: "https://www.behance.net/gallery/203215647/Dhaka-Marathon-2024"
   },
   {
     id: 5,
     title: "Social Media Graphics",
-    category: "Digital Marketing",
     description: "Engaging social media template system for consistent brand presence across all platforms.",
     tags: ["Social Media", "Templates", "Brand Consistency"],
     color: "from-indigo-500 to-purple-500",
     featured: false,
     year: "2024",
-    image: "https://placehold.co/600x400/6366f1/ffffff?text=Social+Media",
-    link: "#"
+    image: "5.jpg",
+    link: "https://www.behance.net/gallery/233086355/Social-Media-Poster-Design"
   },
   {
     id: 6,
-    title: "Corporate Presentation",
-    category: "Digital Marketing",
-    description: "Professional presentation design for corporate clients with clean layouts and data visualization.",
-    tags: ["Presentation", "Data Viz", "Corporate"],
+    title: "e-Commerce clothing store",
+    description: "The landing page for Unique is a modern, fashion-forward eCommerce interface designed.",
+    tags: ["Landing Page", "Ui Design", "e-Commerce"],
     color: "from-teal-500 to-blue-500",
     featured: false,
-    year: "2023",
-    image: "https://placehold.co/600x400/14b8a6/ffffff?text=Presentation",
-    link: "#"
+    year: "2025",
+    image: "6.jpeg",
+    link: "https://www.behance.net/gallery/231684285/eCommerce-clothing-store"
   }
 ];
 
