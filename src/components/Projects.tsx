@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Filter, Grid, List } from 'lucide-react'
+import { useState } from 'react';
+import { Grid, List } from 'lucide-react';
 
 // Mock components for Button and Card since the original imports are not available.
 const Button = ({ children, className, ...props }) => (
@@ -16,59 +16,61 @@ const Card = ({ children, className, ...props }) => (
 
 
 const Projects = () => {
-  const [activeFilter, setActiveFilter] = useState('All')
-  const [viewMode, setViewMode] = useState('grid')
+  const [viewMode, setViewMode] = useState('grid');
 
-  const categories = ['All', 'Branding', 'Web Design', 'Mobile Design', 'Print Design', 'Digital Marketing']
   const projects = [
   {
     id: 1,
     title: "Brand Identity Design",
-  
+    category: "Branding",
     description: "Complete brand identity system for a tech startup including logo, typography, and brand guidelines.",
     tags: ["Logo Design", "Brand Guidelines", "Typography"],
     color: "from-purple-500 to-pink-500",
     featured: true,
     year: "2024",
-    image: "/1.jpeg",
+    image: "1.jpeg",
     link: "https://www.behance.net/gallery/163359893/Brand-Identity"
   },
   {
     id: 2,
     title: "Primary School Website UI",
+    category: "Web Design",
     description: "Modern and clean e-commerce platform design focused on user experience and conversion optimization.",
     tags: ["UI Design", "UX Research", "Prototyping"],
     color: "from-blue-500 to-cyan-500",
     featured: true,
     year: "2025",
-    image: "/2.jpeg",
+    image: "2.jpeg",
     link: "https://www.behance.net/gallery/232702915/Smart-Modern-School-Website-UI-Design"
   },
   {
     id: 3,
     title: "Trip24 Admin Panel Dashboard UI",
+    category: "Admin Panel Dashboard UI Design",
     description: "Trip24 Admin Panel Dashboard UI/UX Design for a Track booking platform with data visualization and user management features.",
     tags: ["Desktop UI", "User Experience", "Interaction Design"],
     color: "from-green-500 to-emerald-500",
     featured: false,
     year: "2025",
-    image: "/3.jpeg",
+    image: "3.jpeg",
     link: "https://www.behance.net/gallery/231695663/E-Learning-Landing-Page-Design"
   },
   {
     id: 4,
     title: "Dhaka Marathon Event Design",
+    category: "Print Design",
     description: "Creative print campaign for a Dhaka Marathon Event including posters, brochures, and packaging design.",
     tags: ["Print Design", "Campaign", "Packaging"],
     color: "from-orange-500 to-red-500",
     featured: true,
     year: "2024",
-    image: "/4.jpg",
+    image: "4.jpg",
     link: "https://www.behance.net/gallery/203215647/Dhaka-Marathon-2024"
   },
   {
     id: 5,
     title: "Social Media Graphics",
+    category: "Digital Marketing",
     description: "Engaging social media template system for consistent brand presence across all platforms.",
     tags: ["Social Media", "Templates", "Brand Consistency"],
     color: "from-indigo-500 to-purple-500",
@@ -79,29 +81,22 @@ const Projects = () => {
   },
   {
     id: 6,
-    title: "e-Commerce clothing store",
+    title: "e Commerce clothing store",
+    category: "Web Design",
     description: "The landing page for Unique is a modern, fashion-forward eCommerce interface designed.",
-    tags: ["Landing Page", "Ui Design", "e-Commerce"],
+    tags: ["Landing Page", "Data Viz", "Corporate"],
     color: "from-teal-500 to-blue-500",
     featured: false,
-    year: "2025",
+    year: "2023",
     image: "6.jpeg",
     link: "https://www.behance.net/gallery/231684285/eCommerce-clothing-store"
   }
 ];
 
-  const filteredProjects = activeFilter === 'All'
-    ? projects
-    : projects.filter(project =>
-        project.tags.some(tag => tag.toLowerCase() === activeFilter.toLowerCase()) ||
-        (project.title && project.title.toLowerCase().includes(activeFilter.toLowerCase()))
-      );
-    
-
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 text-gray-900">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+        <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
             Featured <span className="bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text">Projects</span>
           </h2>
@@ -110,28 +105,9 @@ const Projects = () => {
           </p>
         </div>
 
-        {/* Enhanced Filter & View Controls */}
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-6 mb-12">
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category}
-                variant={activeFilter === category ? "default" : "outline"}
-                size="sm"
-                onClick={() => setActiveFilter(category)}
-                className={`transition-all duration-300 rounded-full px-4 py-2 ${
-                  activeFilter === category
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-white border-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white'
-                }`}
-              >
-                <Filter className="mr-2 h-4 w-4" />
-                {category}
-              </Button>
-            ))}
-          </div>
-
-          <div className="flex items-center space-x-2">
+        {/* View Controls */}
+        <div className="flex justify-end items-center mb-12">
+          <div className="flex items-center space-x-">
             <Button
               variant={viewMode === 'grid' ? "default" : "outline"}
               size="sm"
@@ -156,7 +132,7 @@ const Projects = () => {
             ? 'md:grid-cols-2 lg:grid-cols-3'
             : 'grid-cols-1 max-w-4xl mx-auto'
         }`}>
-          {filteredProjects.map((project, index) => (
+          {projects.map((project) => (
             <a key={project.id} href={project.link} target="_blank" rel="noopener noreferrer" className="block">
               <Card
                 className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 h-full ${
@@ -168,9 +144,11 @@ const Projects = () => {
                   src={project.image} 
                   alt={project.title} 
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  onError={(e) => { const target = e.currentTarget as HTMLImageElement;
-                     target.onerror = null;target.src = "https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found";}}
-                     />
+                  onError={(e) => { 
+                      e.currentTarget.onerror = null; 
+                      e.currentTarget.src = "https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found";
+                  }}
+                  />
 
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
                   
@@ -186,7 +164,7 @@ const Projects = () => {
                   
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="text-white text-lg font-semibold text-center p-4">
-                      
+                      {project.category}
                     </div>
                   </div>
                   
@@ -198,7 +176,7 @@ const Projects = () => {
                   <div>
                     <div className="flex items-center justify-between mb-3">
                       <span className="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
-                        
+                        {project.category}
                       </span>
                       {project.featured && (
                         <span className="text-xs font-medium bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full flex items-center">
