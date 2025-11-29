@@ -4,7 +4,7 @@ import { TextareaProps } from './ui/textarea';
 
 
 const Card = ({ className, children }) => (
-  <div className={`rounded-2xl ${className}`}>{children}</div>
+  <div className={`rounded-2xl ${className}`}>{children}</div> 
 );
 
 const Input = ({ className, ...props }) => (

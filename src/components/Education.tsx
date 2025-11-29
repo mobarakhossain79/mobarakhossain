@@ -9,9 +9,9 @@ const educationData = [
     description: "Focused on design, multimedia projects, and creative development.",
   },
   {
-    degree: "HSC - Science",
-    school: "Dhaka College",
-    year: "2019 - 2021",
+    degree: "HIGHER SECONDARY CERTIFICATE - SCIENCE",
+    school: "Pangsha Government College",
+    year: "2017 - 2018",
     description: "Specialized in Science stream with top grades.",
   },
 ];
@@ -20,7 +20,9 @@ const EducationSection = () => {
   return (
     <section className="bg-gray-50 py-16 px-4">
       <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-4xl font-bold mb-8">My Education</h2>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+            My <span className="bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text">Education</span>
+          </h2>
         <div className="grid md:grid-cols-2 gap-8">
           {educationData.map((edu, index) => (
             <motion.div

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, Sparkles, Code, Palette } from 'lucide-react';
-
+import { Menu, X } from 'lucide-react';
 
 const Button = ({ className, children, ...props }) => (
   <button className={className} {...props}>
@@ -16,11 +15,10 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
-      
-      // Update active section based on scroll position
+
       const sections = ['hero', 'about', 'projects', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -33,7 +31,7 @@ const Navbar = () => {
         }
       }
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -48,39 +46,43 @@ const Navbar = () => {
   };
 
   const navItems = [
-    { label: 'Home', id: 'hero', icon: Sparkles },
-    { label: 'About', id: 'about', icon: Code },
-    { label: 'Projects', id: 'projects', icon: Palette },
-    { label: 'Skills', id: 'skills', icon: Code },
-    { label: 'Contact', id: 'contact', icon: Sparkles },
+    { label: 'Home', id: 'hero' },
+    { label: 'About', id: 'about' },
+    { label: 'Projects', id: 'projects' },
+    { label: 'Skills', id: 'skills' },
+    { label: 'Contact', id: 'contact' },
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      isScrolled 
-        ? 'glass py-3 backdrop-blur-xl border-b border-primary/10 text-gray-900' 
-        : 'bg-transparent py-6 text-white'
-    }`}>
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? 'glass py-3 backdrop-blur-xl border-b border-primary/10 text-gray-900'
+          : 'bg-transparent py-6 text-white'
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          
-          
-          <div 
+
+          {/* Logo */}
+          <div
             className="flex items-center space-x-2 group cursor-pointer"
             onClick={() => scrollToSection('hero')}
           >
             <div className="relative">
               <div className="flex items-center space-x-3">
-                <img src="/Me.JPG" alt=" Mobarak Hossain Joy" className="h-12 w-12 rounded-full object-cover shadow-sm" />
-                <div className="text-2xl font-bold">
-                  Mobarak Hossain Joy
-                </div>
+                <img
+                  src="/Me.JPG"
+                  alt="Mobarak Hossain Joy"
+                  className="h-12 w-12 rounded-full object-cover shadow-sm"
+                />
+                <div className="text-2xl font-bold">Mobarak Hossain Joy</div>
               </div>
               <div className="absolute -inset-2 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg blur opacity-0 group-hover:opacity-100 transition-all duration-300" />
             </div>
           </div>
 
-          
+          {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => (
               <button
@@ -93,28 +95,15 @@ const Navbar = () => {
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <span className="relative z-10 flex items-center space-x-1">
-                  <item.icon className="h-4 w-4" />
-                  <span>{item.label}</span>
-                </span>
-                
-                {/* Active indicator */}
+                <span className="relative z-10">{item.label}</span>
+
                 {activeSection === item.id && (
                   <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full" />
                 )}
-                
-                {/* Hover effect */}
+
                 <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </button>
             ))}
-            
-            {/* <Button
-              onClick={() => scrollToSection('contact')}
-              className="ml-4 gradient-primary text-white shadow-primary hover:shadow-lg transform hover:scale-105 transition-all duration-300 group"
-            >
-              <Sparkles className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
-              Let's Talk
-            </Button> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -141,6 +130,7 @@ const Navbar = () => {
                   {item.label}
                 </button>
               ))}
+
               <Button
                 onClick={() => scrollToSection('contact')}
                 className="gradient-primary shadow-primary mt-4"
@@ -156,4 +146,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

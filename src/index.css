@@ -5,6 +5,64 @@
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
+/* Teal → Blue Gradient (Animated) */
+.bg-teal-blue {
+  background: linear-gradient(
+    135deg,
+    #0fb7b7,
+    #149ad6,
+    #1275e3
+  );
+  background-size: 300% 300%;
+}
+
+/* Smooth Motion Animation */
+@keyframes tealBlueFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-tealblue {
+  animation: tealBlueFlow 12s ease-in-out infinite;
+}
+
+/* Full-screen Hero Section */
+.hero {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glass Effect Overlay */
+.glass-card {
+  position: relative;
+  padding: 3rem 4rem;
+  border-radius: 2xl;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent */
+  backdrop-filter: blur(15px) saturate(150%); /* Soft blur */
+  -webkit-backdrop-filter: blur(15px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.2); /* subtle border */
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  color: white;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Hero Text Styling */
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  opacity: 0.85;
+}
 
 @layer base {
   :root {
