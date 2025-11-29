@@ -18,31 +18,51 @@ const educationData = [
 
 const EducationSection = () => {
   return (
-    <section className="bg-gray-50 py-16 px-4">
-      <div className="max-w-5xl mx-auto text-center">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            My <span className="bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text">Education</span>
-          </h2>
+    // Changed the background back to white (bg-white) and removed the gradient
+    <section className="bg-white py-12 px-4 min-h xl: flex items-center justify-center">
+      <div className="max-w-5xl mx-auto text-center w-full">
+        {/* Removed text-white so the title is black/dark grey on white background */}
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-gray-900">
+          My{" "}
+          <span className="bg-gradient-to-r from-cyan-600 to-blue-800 text-transparent bg-clip-text">
+            Education
+          </span>
+        </h2>
+        
         <div className="grid md:grid-cols-2 gap-8">
-          {educationData.map((edu, index) => (
-            <motion.div
-              key={index}
-              className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
-            >
-              <h3 className="text-xl font-semibold mb-2">{edu.degree}</h3>
-              <p className="text-gray-600 font-medium">{edu.school}</p>
-              <p className="text-gray-400 mb-4">{edu.year}</p>
-              <p className="text-gray-700">{edu.description}</p>
-            </motion.div>
-          ))}
+          {educationData.map((edu, index) => {
+            // Determine card styles based on index
+            const isFirst = index === 0;
+            // Keeping the colored gradients for the cards
+            const cardClass = isFirst 
+              ? "bg-gradient-to-r from-teal-400 to-cyan-500 text-white" // First card: Teal to Cyan
+              : "bg-gradient-to-r from-purple-500 to-indigo-600 text-white"; // Second card: Purple to Indigo
+
+            return (
+              <motion.div
+                key={index}
+                // Apply dynamic class for different colors
+                className={`p-8 rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-300 border-b-4 border-white transform hover:scale-[1.02] ${cardClass}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2, duration: 0.5 }}
+              >
+                {/* Text color is white for all elements inside the colored cards */}
+                <h3 className="text-xl font-bold mb-2">{edu.degree}</h3>
+                <p className="font-semibold mb-1 opacity-90">{edu.school}</p>
+                <p className="text-sm mb-4 font-mono opacity-80">{edu.year}</p>
+                <p className="leading-relaxed opacity-90">{edu.description}</p>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>
   );
 };
 
-export default EducationSection;
+// Main App Component
+export default function App() {
+  return <EducationSection />;
+}
