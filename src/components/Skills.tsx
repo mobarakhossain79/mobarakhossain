@@ -123,7 +123,7 @@ const Card = ({ children, className = "" }) => (
   </div>
 );
 
-const SkillsSection = () => {
+const App = () => {
   // --- Data for the component ---
   const skillCategories = [
     {
@@ -158,7 +158,7 @@ const SkillsSection = () => {
   ];
 
   return (
-    <div className="font-sans min-h-screen py-20 px-4 sm:px-6 lg:px-8 text-slate-900 bg-[#FAFAF7]">
+    <div className="font-sans w-full py-20 px-4 sm:px-6 lg:px-8 text-slate-900 bg-[#FAFAF7]">
       <section id="skills">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -206,17 +206,17 @@ const SkillsSection = () => {
                       className="bg-slate-100 border border-slate-200 rounded-full px-5 py-2.5 text-sm font-medium text-slate-700 transition-colors duration-300 hover:bg-cyan-50 hover:border-cyan-200 hover:text-cyan-700 cursor-default"
                       title={`${skill.level}%`}
                     >
-                                      {skill.name}
-                                    </span>
-                                  ))}
-                                </div>
-                              </Card>
-                            ))}
-                          </div>
-                                            </div>
-                                          </section>
-                                        </div>
-                                      );
-                                    };
-                    
-                    export default SkillsSection;
+                      {skill.name}
+                    </span>
+                  ))}
+                </div>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default App;

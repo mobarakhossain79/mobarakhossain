@@ -19,7 +19,7 @@ const educationData = [
 const EducationSection = () => {
   return (
     // Changed the background back to white (bg-white) and removed the gradient
-    <section className="bg-white py-12 px-4 min-h xl: flex items-center justify-center">
+    <section className="bg-white py-12 px-4 min-h xl:npm flex items-center justify-center">
       <div className="max-w-5xl mx-auto text-center w-full">
         {/* Removed text-white so the title is black/dark grey on white background */}
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 text-gray-900">
