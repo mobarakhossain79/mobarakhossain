@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Grid, List } from 'lucide-react';
+import { Grid, List, Zap } from 'lucide-react';
 
 // --- Mock UI Components (Dependencies) ---
 const Button = ({ children, className, ...props }) => (
@@ -21,6 +21,7 @@ const Card = ({ children, className, ...props }) => (
 const Projects = () => {
   const [viewMode, setViewMode] = useState('grid');
 
+  // Updated array with projects 15 and 16 removed. The array now contains 14 projects.
   const allProjects = [
   {
     id: 1,
@@ -142,7 +143,7 @@ const Projects = () => {
     image: "10.jpeg",
     link: "https://www.behance.net/gallery/556677889/SaaS-Landing-Page"
   },
-  // --- SIX NEW PROJECTS ADDED HERE ---
+  // --- Project 11, 12, 13, and 14 remain ---
   {
     id: 11,
     title: "E-commerce Checkout Flow Redesign",
@@ -190,38 +191,14 @@ const Projects = () => {
     year: "2023",
     image: "14.jpg",
     link: "https://www.behance.net/gallery/444444444/Poster-Series"
-  },
-  {
-    id: 15,
-    title: "AI-Powered Chatbot Interface",
-    category: "Conversational AI",
-    description: "Designed the conversation flow and user interface for a sophisticated, multimodal AI customer service bot.",
-    tags: ["Bot UI", "Conversational Design", "Prototyping", "Micro-interactions"],
-    color: "from-lime-400 to-green-600",
-    featured: true, // Displayed in the featured section
-    year: "2025",
-    image: "15.png",
-    link: "https://www.behance.net/gallery/555555555/AI-Chatbot-UI"
-  },
-  {
-    id: 16,
-    title: "Real Estate Data Analytics",
-    category: "Data Reporting",
-    description: "Built a detailed, interactive report visualization tool for analyzing property market trends and investment returns.",
-    tags: ["Data Viz", "BI Tooling", "Tableau", "Dashboard"],
-    color: "from-blue-700 to-cyan-500",
-    featured: false,
-    year: "2024",
-    image: "16.jpg",
-    link: "https://www.behance.net/gallery/666666666/RE-Analytics"
   }
 ];
 
-  // Filter to show ONLY featured projects
-  const featuredProjects = allProjects.filter(project => project.featured);
+  // Filter for featured projects and explicitly limit the result to the first 6 projects
+  const featuredProjects = allProjects.filter(project => project.featured).slice(0, 6);
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-12 relative z-10 text-slate-300 bg-[#030014]">
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-12 relative z-10 text-slate-300 bg-[#030014] min-h-screen">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">
@@ -234,15 +211,16 @@ const Projects = () => {
 
         {/* View Controls */}
         <div className="flex justify-end items-center mb-12">
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center space-x-1 p-1 bg-slate-900 border border-slate-700 rounded-lg shadow-inner">
             <Button
               variant={viewMode === 'grid' ? "default" : "outline"}
               size="sm"
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-md transition-all duration-300 ${
+              aria-label="Grid View"
+              className={`p-2 rounded-lg transition-all duration-300 ${
                 viewMode === 'grid'
                   ? 'bg-cyan-500 text-slate-900 shadow-lg shadow-cyan-500/30'
-                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-400'
+                  : 'bg-transparent border-none text-slate-300 hover:bg-slate-700/50 hover:text-cyan-400'
               }`}
             >
               <Grid className="h-5 w-5" />
@@ -251,10 +229,11 @@ const Projects = () => {
               variant={viewMode === 'list' ? "default" : "outline"}
               size="sm"
               onClick={() => setViewMode('list')}
-              className={`p-2 rounded-md transition-all duration-300 ${
+              aria-label="List View"
+              className={`p-2 rounded-lg transition-all duration-300 ${
                 viewMode === 'list'
                   ? 'bg-cyan-500 text-slate-900 shadow-lg shadow-cyan-500/30'
-                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-400'
+                  : 'bg-transparent border-none text-slate-300 hover:bg-slate-700/50 hover:text-cyan-400'
               }`}
             >
               <List className="h-5 w-5" />
@@ -262,66 +241,78 @@ const Projects = () => {
           </div>
         </div>
 
-        <div className={`grid gap-8 ${
+        <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className={`grid gap-8 ${
           viewMode === 'grid'
             ? 'md:grid-cols-2 lg:grid-cols-3'
             : 'grid-cols-1 max-w-4xl mx-auto'
         }`}>
-          {/* Map over the filtered list: featuredProjects */}
+          {/* Map over the sliced list: featuredProjects (now limited to 6) */}
           {featuredProjects.map((project) => (
-            <a key={project.id} href={project.link} target="_blank" rel="noopener noreferrer" className="block">
+            <motion.a 
+                key={project.id} 
+                href={project.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="block"
+                initial={{ scale: 0.95, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4, delay: project.id * 0.1 }}
+            >
               <Card
-                className={`bg-slate-800 rounded-2xl shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-cyan-500/30 overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 h-full ${
-                  viewMode === 'list' ? 'flex flex-row' : 'flex flex-col'
+                className={`bg-slate-900 border-slate-700 rounded-2xl shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-cyan-500/30 overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 h-full ${
+                  viewMode === 'list' ? 'flex flex-col sm:flex-row' : 'flex flex-col'
                 }`}
               >
-                <div className={`${viewMode === 'list' ? 'w-1/3' : 'h-64'} bg-gradient-to-r ${project.color} relative overflow-hidden`}>
+                <div className={`${viewMode === 'list' ? 'sm:w-1/3 w-full h-48 sm:h-auto' : 'h-64'} bg-gradient-to-r ${project.color} relative overflow-hidden flex-shrink-0`}>
                   <img
-                  src={project.image}
-                  alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  onError={(e) => {
+                    src={`https://placehold.co/600x400/1e293b/e2e8f0?text=Project+${project.id}`} // Using placeholder images for stability
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => {
+                      // Fallback to a placeholder image if the provided mock URL fails
                       e.currentTarget.onerror = null;
                       e.currentTarget.src = "https://placehold.co/600x400/1e293b/e2e8f0?text=Image+Not+Found"; // Dark mode placeholder
-                  }}
+                    }}
                   />
 
+                  {/* Gradient Overlay for visual polish */}
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500" />
 
                   {project.featured && (
-                    <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-md">
-                      Featured
+                    <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-slate-900 text-xs px-3 py-1 rounded-full font-bold shadow-lg flex items-center">
+                      <Zap className="w-3 h-3 mr-1" /> Featured
                     </div>
                   )}
 
-                  <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-lg font-medium">
+                  <div className="absolute bottom-4 right-4 bg-black/50 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-full font-medium border border-slate-600">
                     {project.year}
                   </div>
 
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="text-white text-lg font-semibold text-center p-4">
+                  {/* Hover effect to show category */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/50">
+                    <div className="text-white text-lg font-semibold text-center p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                       {project.category}
                     </div>
                   </div>
 
+                  {/* Animated Light Blobs */}
                   <div className="absolute -top-10 -right-10 w-20 h-20 bg-white/10 rounded-full blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute -bottom-5 -left-5 w-15 h-15 bg-white/5 rounded-full blur-lg opacity-30 group-hover:opacity-60 transition-opacity duration-500" />
                 </div>
 
-                <div className={`${viewMode === 'list' ? 'w-2/3' : ''} p-6 flex flex-col justify-between flex-grow`}>
+                <div className={`${viewMode === 'list' ? 'sm:w-2/3' : ''} p-6 flex flex-col justify-between flex-grow`}>
                   <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-medium text-cyan-400 bg-cyan-900/50 px-3 py-1 rounded-full">
+                    <div className="flex items-start justify-between mb-3">
+                      <span className="text-xs font-medium text-cyan-400 bg-cyan-900/50 px-3 py-1 rounded-full border border-cyan-700/50">
                         {project.category}
                       </span>
-                      {project.featured && (
-                        <span className="text-xs font-medium bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded-full flex items-center">
-                          <span className="mr-1">⭐</span> Featured
-                        </span>
-                      )}
                     </div>
 
-                    <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-cyan-400 transition-colors duration-300">
+                    <h3 className="text-xl font-extrabold mb-3 text-slate-50 group-hover:text-cyan-400 transition-colors duration-300">
                       {project.title}
                     </h3>
 
@@ -330,11 +321,11 @@ const Projects = () => {
                     </p>
                   </div>
 
-                  <div className="flex flex-wrap gap-2 mt-auto">
+                  <div className="flex flex-wrap gap-2 mt-auto pt-3 border-t border-slate-800/50">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="text-xs bg-slate-700 text-slate-300 px-3 py-1 rounded-lg hover:bg-cyan-900/50 hover:text-cyan-400 transition-colors duration-200 cursor-pointer"
+                        className="text-xs bg-slate-800 text-slate-400 px-3 py-1 rounded-full hover:bg-cyan-900/50 hover:text-cyan-400 transition-colors duration-200 cursor-pointer shadow-sm border border-slate-700/50"
                       >
                         {tag}
                       </span>
@@ -342,15 +333,16 @@ const Projects = () => {
                   </div>
                 </div>
               </Card>
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
 
         <div className="text-center mt-16">
+          {/* This button will be shown since we only display 6 out of 7 featured projects */}
           <Button
             variant="outline"
             size="lg"
-            className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-cyan-500 hover:text-slate-900 px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-cyan-500/30"
+            className="bg-slate-800 border-cyan-500/50 text-slate-200 hover:bg-cyan-500 hover:text-slate-900 px-8 py-3 rounded-full text-base font-bold transition-all duration-300 shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-cyan-500/30 ring-4 ring-cyan-500/20"
           >
             View All Projects
           </Button>
@@ -360,4 +352,14 @@ const Projects = () => {
   )
 }
 
-export default Projects;
+// Main App component
+const App = () => {
+  return (
+    // Set up the main container with a dark background for the theme
+    <div className="min-h-screen bg-[#030014] font-sans">
+      <Projects />
+    </div>
+  );
+}
+
+export default App;
