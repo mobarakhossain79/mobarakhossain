@@ -1,6 +1,6 @@
-import React from "react";  
+import React from "react";
 import { motion } from "framer-motion";
-import { Download } from 'lucide-react';
+import { ArrowRight, Download, Sparkles } from 'lucide-react';
 
 const HeroSection = () => {
 
@@ -31,7 +31,7 @@ const HeroSection = () => {
             <span className="text-xs font-medium text-gray-300 tracking-wide uppercase">Available for work</span>
           </div>
 
-          {/* Main Headline */}
+          {/* Main Headline - MODIFICATION APPLIED HERE */}
           <h1 className="text-5xl sm:text-4xl lg:text-7xl font-bold tracking-tight text-white leading-none">
             Design with
             {/* The 'block mt-4' classes create the two-line break with extra vertical space */}
@@ -49,8 +49,10 @@ const HeroSection = () => {
             "Design is not just what it looks like and feels like. Design is how it works."
           </blockquote>
 
-          {/* Action Buttons (Only Download Resume remains) */}
+          {/* Action Buttons */}
           <div className="flex flex-wrap gap-4 pt-4 justify-start">
+            {/* The 'Get In Touch' button was removed here as requested. */}
+            
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -73,11 +75,11 @@ const HeroSection = () => {
           {/* Image Container */}
           <div className="w-72 h-72 sm:w-80 sm:h-80 bg-transparent rounded-full overflow-hidden shadow-2xl relative border-4 border-cyan-400/50 hover:border-cyan-400 transition-all duration-300">
             <img 
-                src="/Me.JPG" 
-                alt="User Portrait"
-                className="w-full h-full object-cover"
-                // Fallback to a placeholder image if /Me.JPG fails to load
-                onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/800x800/1f2937/d1d5db?text=Me" }}
+              src="/Me.JPG" 
+              alt="User Portrait"
+              className="w-full h-full object-cover"
+              // Fallback to a placeholder image if /Me.JPG fails to load
+              onError={(e) => { e.target.onerror = null; e.target.src="https://placehold.co/800x800/1f2937/d1d5db?text=Me" }}
             />
           </div>
         </motion.div>
@@ -91,7 +93,7 @@ const HeroSection = () => {
 // --- Main Application Component ---
 const App = () => {
   return (
-    <main className="min-h-screen  bg-[#030014] text-white font-['Inter']">
+    <main className="min-h-screen relative overflow-hidden bg-[#030014] text-white font-['Inter']">
       {/* --- Global Background Elements (Grid, Blurs) --- */}
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
       <div className="fixed -top-20 -left-20 w-[500px] h-[500px] bg-purple-500/30 rounded-full blur-[120px] opacity-50 pointer-events-none z-0" />
