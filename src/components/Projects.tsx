@@ -94,25 +94,33 @@ const Projects = () => {
 ];
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 text-gray-900">
+    // Updated: Changed background to bg-slate-950 and default text to slate-300
+    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-slate-950 text-slate-300">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-10">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">
+            {/* Added text-white to ensure visibility */}
             Featured <span className="bg-gradient-to-r from-cyan-400 to-blue-600 text-transparent bg-clip-text">Projects</span>
           </h2>
-          <p className="text-xl text-gray-500 max-w-2xl mx-auto">
+          {/* Updated: Changed text-gray-500 to text-slate-400 */}
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
             A showcase of my creative work across various design disciplines
           </p>
         </div>
 
         {/* View Controls */}
         <div className="flex justify-end items-center mb-12">
-          <div className="flex items-center space-x-">
+          <div className="flex items-center space-x-1">
+            {/* Updated: Dark mode button styles for active/inactive states */}
             <Button
               variant={viewMode === 'grid' ? "default" : "outline"}
               size="sm"
               onClick={() => setViewMode('grid')}
-              className={`p-2 rounded-md ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'bg-white border-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white'}`}
+              className={`p-2 rounded-md transition-all duration-300 ${
+                viewMode === 'grid' 
+                  ? 'bg-cyan-500 text-slate-900 shadow-lg shadow-cyan-500/30' 
+                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-400'
+              }`}
             >
               <Grid className="h-5 w-5" />
             </Button>
@@ -120,7 +128,11 @@ const Projects = () => {
               variant={viewMode === 'list' ? "default" : "outline"}
               size="sm"
               onClick={() => setViewMode('list')}
-              className={`p-2 rounded-md ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'bg-white border-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white'}`}
+              className={`p-2 rounded-md transition-all duration-300 ${
+                viewMode === 'list' 
+                  ? 'bg-cyan-500 text-slate-900 shadow-lg shadow-cyan-500/30' 
+                  : 'bg-slate-800 border-slate-700 text-slate-300 hover:bg-cyan-500/20 hover:text-cyan-400'
+              }`}
             >
               <List className="h-5 w-5" />
             </Button>
@@ -135,7 +147,8 @@ const Projects = () => {
           {projects.map((project) => (
             <a key={project.id} href={project.link} target="_blank" rel="noopener noreferrer" className="block">
               <Card
-                className={`bg-white rounded-2xl shadow-lg hover:shadow-2xl overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 h-full ${
+                // Updated: Changed card background and added dark mode shadow for depth and hover effect
+                className={`bg-slate-800 rounded-2xl shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-cyan-500/30 overflow-hidden group transform transition-all duration-500 hover:-translate-y-2 h-full ${
                   viewMode === 'list' ? 'flex flex-row' : 'flex flex-col'
                 }`}
               >
@@ -146,11 +159,11 @@ const Projects = () => {
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => { 
                       e.currentTarget.onerror = null; 
-                      e.currentTarget.src = "https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found";
+                      e.currentTarget.src = "https://placehold.co/600x400/1e293b/e2e8f0?text=Image+Not+Found"; // Dark mode placeholder
                   }}
                   />
 
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-all duration-500" />
                   
                   {project.featured && (
                     <div className="absolute top-4 left-4 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-3 py-1 rounded-full font-medium shadow-md">
@@ -158,7 +171,7 @@ const Projects = () => {
                     </div>
                   )}
                   
-                  <div className="absolute bottom-4 left-4 bg-black/30 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-lg font-medium">
+                  <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-sm px-3 py-1 rounded-lg font-medium">
                     {project.year}
                   </div>
                   
@@ -175,30 +188,35 @@ const Projects = () => {
                 <div className={`${viewMode === 'list' ? 'w-2/3' : ''} p-6 flex flex-col justify-between flex-grow`}>
                   <div>
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-xs font-medium text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
+                      {/* Updated: Category tag colors for dark mode */}
+                      <span className="text-xs font-medium text-cyan-400 bg-cyan-900/50 px-3 py-1 rounded-full">
                         {project.category}
                       </span>
                       {project.featured && (
-                        <span className="text-xs font-medium bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full flex items-center">
+                        /* FIX: Removed surrounding JSX comment which caused a syntax error (Expected ")") */
+                        <span className="text-xs font-medium bg-yellow-900/50 text-yellow-300 px-2 py-1 rounded-full flex items-center">
                           <span className="mr-1">⭐</span> Featured
                         </span>
                       )}
                     </div>
                     
-                    <h3 className="text-xl font-bold mb-3 text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                    {/* Updated: Title text color and hover effect */}
+                    <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-cyan-400 transition-colors duration-300">
                       {project.title}
                     </h3>
                     
-                    <p className="text-gray-500 text-sm mb-4 leading-relaxed">
+                    {/* Updated: Description text color */}
+                    <p className="text-slate-400 text-sm mb-4 leading-relaxed">
                       {project.description}
                     </p>
                   </div>
                   
+                  {/* Updated: Tag list colors for dark mode */}
                   <div className="flex flex-wrap gap-2 mt-auto">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-lg hover:bg-blue-100 hover:text-blue-600 transition-colors duration-200 cursor-pointer"
+                        className="text-xs bg-slate-700 text-slate-300 px-3 py-1 rounded-lg hover:bg-cyan-900/50 hover:text-cyan-400 transition-colors duration-200 cursor-pointer"
                       >
                         {tag}
                       </span>
@@ -214,7 +232,8 @@ const Projects = () => {
           <Button
             variant="outline"
             size="lg"
-            className="bg-white border-gray-300 text-gray-700 hover:bg-blue-600 hover:text-white px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 shadow-sm hover:shadow-lg"
+            // Updated: Dark mode button styles and shadow
+            className="bg-slate-800 border-slate-700 text-slate-300 hover:bg-cyan-500 hover:text-slate-900 px-8 py-3 rounded-full text-base font-semibold transition-all duration-300 shadow-xl shadow-slate-900/50 hover:shadow-2xl hover:shadow-cyan-500/30"
           >
             View All Projects
           </Button>

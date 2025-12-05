@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react";  
 import { motion } from "framer-motion";
-import { ArrowRight, Download, Sparkles } from 'lucide-react';
+import { Download } from 'lucide-react';
 
 const HeroSection = () => {
 
@@ -31,7 +31,7 @@ const HeroSection = () => {
             <span className="text-xs font-medium text-gray-300 tracking-wide uppercase">Available for work</span>
           </div>
 
-          {/* Main Headline - MODIFICATION APPLIED HERE */}
+          {/* Main Headline */}
           <h1 className="text-5xl sm:text-4xl lg:text-7xl font-bold tracking-tight text-white leading-none">
             Design with
             {/* The 'block mt-4' classes create the two-line break with extra vertical space */}
@@ -49,19 +49,8 @@ const HeroSection = () => {
             "Design is not just what it looks like and feels like. Design is how it works."
           </blockquote>
 
-          {/* Action Buttons */}
+          {/* Action Buttons (Only Download Resume remains) */}
           <div className="flex flex-wrap gap-4 pt-4 justify-start">
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="#contact"
-              className="group relative inline-flex items-center gap-2 px-8 py-4 bg-white text-black rounded-xl font-semibold overflow-hidden transition-all shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)]"
-            >
-              <span className="relative z-10 flex items-center gap-2">
-                Get In Touch <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </span>
-            </motion.a>
-
             <motion.a
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -102,7 +91,7 @@ const HeroSection = () => {
 // --- Main Application Component ---
 const App = () => {
   return (
-    <main className="min-h-screen relative overflow-hidden bg-[#030014] text-white font-['Inter']">
+    <main className="min-h-screen  bg-[#030014] text-white font-['Inter']">
       {/* --- Global Background Elements (Grid, Blurs) --- */}
       <div className="fixed inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] z-0"></div>
       <div className="fixed -top-20 -left-20 w-[500px] h-[500px] bg-purple-500/30 rounded-full blur-[120px] opacity-50 pointer-events-none z-0" />
